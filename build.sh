@@ -66,7 +66,7 @@ current_dir=$(pwd)
 
 prefix_path="${current_dir}/../gcc-${number}"
 
-../gcc/configure -v --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu "--prefix=${prefix_path}" --enable-checking=release --enable-languages=c,c++,fortran,go --disable-multilib
+../gcc/configure -v --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu "--prefix=${prefix_path}" "--program-suffix=-${number}" --enable-checking=release --enable-languages=c,c++,fortran,go --disable-multilib
 
 echo "Building"
 
