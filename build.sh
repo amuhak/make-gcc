@@ -99,7 +99,7 @@ if [ -d "${GCC_SOURCE_DIR}/.git" ]; then
     cd ..
 else
     echo "Cloning GCC repository from ${DEFAULT_GCC_GIT_URL}..."
-    git clone --bare "${DEFAULT_GCC_GIT_URL}" "${GCC_SOURCE_DIR}.git"
+    git clone --bare "${DEFAULT_GCC_GIT_URL}" "${GCC_SOURCE_DIR}"
     # Create a working directory from the bare repo
     git --git-dir="${GCC_SOURCE_DIR}.git" --work-tree="${GCC_SOURCE_DIR}" checkout -f
     cd "${GCC_SOURCE_DIR}"
