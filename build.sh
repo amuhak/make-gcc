@@ -207,7 +207,7 @@ if [ "$run_tests" = true ]; then
     # The number of cores for testing might need adjustment, sometimes -jN fails for 'check'
     # Using a lower number or just 'make check' might be more stable.
     start_time_test=$(date +%s)
-    make -j "${no_of_cores}" check || echo "Warning: 'make check' reported errors. Check logs in '${BUILD_DIR}' for details."
+    make -k -j "${no_of_cores}" check || echo "Warning: 'make check' reported errors. Check logs in '${BUILD_DIR}' for details."
     end_time_test=$(date +%s)
     duration_test=$((end_time_test - start_time_test))
     echo "Test suite finished in $(($duration_test / 60)) minutes and $(($duration_test % 60)) seconds."
