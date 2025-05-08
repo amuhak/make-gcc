@@ -95,14 +95,12 @@ if [ -d "${GCC_SOURCE_DIR}/.git" ]; then
   cd ..
 else
   git clone "${DEFAULT_GCC_GIT_URL}"
-  echo "THIS ISNT GOOD"
   echo "GCC repository '${GCC_SOURCE_DIR}' already exists. Updating..."
   cd "${GCC_SOURCE_DIR}"
   git fetch --all --tags
   echo "Determining the latest GCC release version from existing repo..."
   latest_version=$(git tag -l 'releases/gcc-*' | grep -v 'rc' | grep -v 'snapshot' | sort -V | tail -n 1 | sed 's|^releases/gcc-||')
   cd ..
-  exit 1
 fi
 
 if [ -z "$latest_version" ]; then
