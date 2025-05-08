@@ -196,11 +196,18 @@ if [ "$run_tests" = true ]; then
   # The number of cores for testing might need adjustment, sometimes -jN fails for 'check'
   # Using a lower number or just 'make check' might be more stable.
   start_time_test=$(date +%s)
-  make -k -j "${no_of_cores}" check || echo "Warning: 'make check' reported errors. Check logs in '${BUILD_DIR}' for details."
+
+  # Use an if statement to handle potential failures from 'make check'
+  # This construct is safe with 'set -e'
+  if ! make -k -j "${no_of_cores}" check; then
+    echo "Warning: 'make check' reported errors. Check logs in '${BUILD_DIR}' for details."
+    # You could optionally set a flag here if you want to report this at the end differently
+    # or even exit if test failures are critical for your workflow, e.g., exit 1
+  fi
+
   end_time_test=$(date +%s)
   duration_test=$((end_time_test - start_time_test))
   echo "Test suite finished in $(($duration_test / 60)) minutes and $(($duration_test % 60)) seconds."
-
 else
   echo "Skipping test suite (--run-tests not specified)."
 fi
